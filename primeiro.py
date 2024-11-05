@@ -1,5 +1,8 @@
+import csv
+import os
+print(os.getcwd())
 class Item:
-    pay_rate = 0.8
+    
     all = []
     #__init__ é sempre chamado toda vez que um novo  objeto é instanciando, por exemplo: item1 = Item()]
     # Funções dentro de classes são chamados de MÉTODOS
@@ -7,6 +10,7 @@ class Item:
     # e item1.quantity sendo calculados
 
     def __init__(self,name: str,price: float,quantity = 0):
+        pay_rate = 0.8
         # Validações
         assert price >= 0, f"The price {price} its not bigger than 0"
         assert quantity >= 0, f"A quantidade {quantity} não é maior do que 0"
@@ -27,14 +31,42 @@ class Item:
         return print(self.price)
     pass
 
+    @classmethod
+    def instantiate_from_csv(cls):
+        
+        # SEARCHING FOR FILE SINCE PYTHON DOESNT WANT TO
+        script_dir = os.path.dirname(__file__)
+        file_path = os.path.join(script_dir, 'items.csv')
+        print(f"Looking for items.csv in: {file_path}")
+        
+        with open(file_path, 'r') as f:
+            reader = csv.DictReader(f)
+            items = list(reader)
+
+        
+        for item in items:
+            Item(
+                name=item.get('name'),
+                price=float(item.get('price')),
+                quantity=int(item.get('quantity')),
+            )
+            
+
+    @staticmethod
+    def is_integer(num):
+            # We will count out the floats that are point zero
+            # For i.e: 5.0, 10.0
+            if isinstance(num, float):
+                # Count out the floats that are point zero
+                return num.is_integer()
+            elif isinstance(num, int):
+                return True
+            else:
+                return False
+
+
     def __repr__(self):
         return f"Item('{self.name}', {self.price}, {self.quantity} )\n"
 
 
-item1 = Item("Phone", 100, 1)
-item2 = Item("Laptop", 1000, 3)
-item3 = Item("Cable", 10, 5)
-item4 = Item("Mouse", 50, 5)
-item5 = Item("Keyboard", 75, 5)
-
-print(Item.all)
+print(Item.is_integer(7))
