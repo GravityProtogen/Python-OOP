@@ -2,7 +2,7 @@
 
 class Item:
     @staticmethod
-    def is_integer():
+    def check_if_integer():
         '''
         This should do something that has a relationship
         with the class, but not something that must be unique

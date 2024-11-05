@@ -53,12 +53,12 @@ class Item:
             
 
     @staticmethod
-    def is_integer(num):
+    def check_if_integer(num):
             # We will count out the floats that are point zero
             # For i.e: 5.0, 10.0
             if isinstance(num, float):
                 # Count out the floats that are point zero
-                return num.is_integer()
+                return num.check_if_integer()
             elif isinstance(num, int):
                 return True
             else:
@@ -69,4 +69,4 @@ class Item:
         return f"Item('{self.name}', {self.price}, {self.quantity} )\n"
 
 
-print(Item.is_integer(7))
+print(Item.check_if_integer(7))
