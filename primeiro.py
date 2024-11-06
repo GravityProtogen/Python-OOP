@@ -29,7 +29,7 @@ class Item:
     def apply_discount(self):
         self.price = self.price * self.pay_rate
         return print(self.price)
-    pass
+    
 
     @classmethod
     def instantiate_from_csv(cls):
@@ -69,4 +69,24 @@ class Item:
         return f"Item('{self.name}', {self.price}, {self.quantity} )\n"
 
 
-print(Item.check_if_integer(7))
+
+
+
+class Phone(Item):
+    def __init__(self,name: str,price: float,quantity = 0,brokenPhones = 0):
+        # superFunção pra pegar atributos do Item
+        super().__init__(
+            name, price, quantity
+        )
+        
+        assert brokenPhones >= 0, f"The amount of broken phones {brokenPhones} isnt equal or bigger than 0"
+        
+
+        self.brokenPhones = brokenPhones
+    
+
+
+phone1 = Phone("jscPhonev10", 500, 5,2)
+phone1.calc_total_price()
+phone2 = Phone("jscPhonev10", 700, 5)
+print(phone2.brokenPhones)
