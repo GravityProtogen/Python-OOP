@@ -45,6 +45,26 @@ class Item:
         
     def calc_total_price(self):
         total = self.__price * self.quantity,
+        
+    def __connect(self,smptServer):
+        pass
+    
+    def __prepareBody(self):
+        return f"""
+        Hello Someone.
+        We have {self.name} {self.quantity} times.
+        Regards
+        """
+    
+    def __send(self):
+        print("Enviado")
+        pass
+    
+    def sendEmail(self):
+        self.__connect('')
+        self.__prepareBody()
+        self.__send()
+        pass
     
 
     @classmethod

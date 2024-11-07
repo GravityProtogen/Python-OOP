@@ -3,4 +3,4 @@ from phone import Phone
 
 item1 = Item("MyItem", 750, 6)
 
-item1.sendemail()
+item1.sendEmail()
